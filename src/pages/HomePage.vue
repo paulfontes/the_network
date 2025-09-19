@@ -3,9 +3,9 @@ import { AppState } from '@/AppState.js';
 import { postsServices } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 
-
+const posts = computed(() => AppState.posts)
 
 onMounted(() => getPosts())
 
@@ -26,7 +26,11 @@ async function getPosts() {
 
 
 <template>
-  Getting Posts
+  <div class="container">
+    <section class="row">
+
+    </section>
+  </div>
 </template>
 
 <style scoped lang="scss"></style>
