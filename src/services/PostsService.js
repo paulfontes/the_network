@@ -13,6 +13,16 @@ class PostsServices {
         this.handlePostResponse(response)
 
     }
+    async changeSearchPage(pageNumber, searchTerm) {
+        const response = await api.get(`api/posts?query=${searchTerm}&page=${pageNumber}`)
+        this.handlePostResponse(response)
+    }
+    async searchPost(searchTerm) {
+        const response = await api.get(`api/posts?query=${searchTerm}`)
+        logger.log('searched posts!!', response.data)
+        this.handlePostResponse(response)
+        AppState.searchTerm = searchTerm
+    }
 
     handlePostResponse(response) {
         const posts = response.data.posts.map(pojo => new Post(pojo))
