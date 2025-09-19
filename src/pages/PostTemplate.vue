@@ -40,7 +40,7 @@ defineProps({
 .post-img {
     width: 100%;
     height: 400px;
-    object-fit: fill;
+    object-fit: contain;
     object-position: center;
     aspect-ratio: 1/1;
 }
