@@ -23,6 +23,12 @@ class PostsServices {
         this.handlePostResponse(response)
         AppState.searchTerm = searchTerm
     }
+    async createPost(formData) {
+        const response = await api.post('api/posts', formData)
+        const post = new Post(response.data)
+        AppState.posts.unshift(post)
+
+    }
 
     handlePostResponse(response) {
         const posts = response.data.posts.map(pojo => new Post(pojo))

@@ -6,10 +6,12 @@ import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 import PostTemplate from './PostTemplate.vue';
 import SearchBar from '@/components/SearchBar.vue';
+import BlogForm from '@/components/BlogForm.vue';
 
 const posts = computed(() => AppState.posts)
 const currentPage = computed(() => AppState.currentPage)
 const totalPages = computed(() => AppState.totalPages)
+const account = computed(() => AppState.account)
 
 onMounted(() => getPosts())
 
@@ -49,6 +51,8 @@ async function changePage(pageNumber) {
 <template>
   <div class="container">
     <section class="row g-3 mt-3">
+      <BlogForm v-if="account" />
+      <hr>
       <SearchBar />
       <div class="col-12 d-flex justify-content-between align-items-center">
         <button @click="changePage(currentPage - 1)" class="btn btn-outline-success" :disabled="currentPage < 2">Newest

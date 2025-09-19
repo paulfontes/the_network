@@ -26,7 +26,7 @@ async function searchPosts() {
             <label for="search-bar">Search for a Post</label>
             <div class="d-flex">
                 <input v-model="editableSearchTerm" id="search-bar" class="form-control" type="text">
-                <button class="btn btn-outline-primary" type="submit">Search</button>
+                <button class="btn btn-outline-orange" type="submit">Search</button>
             </div>
         </form>
     </div>
