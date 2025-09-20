@@ -2,8 +2,14 @@ import { Post } from "@/models/Post.js"
 import { api } from "./AxiosService.js"
 import { AppState } from "@/AppState.js"
 import { logger } from "@/utils/Logger.js"
+import { Profile } from "@/models/Profile.js"
 
 class PostsServices {
+    async getPostsByProfileId(profileId) {
+        const response = await api.get(`api/posts?creatorId=${profileId}`)
+        const posts = response.data.posts.map((pojo) => new Profile(pojo))
+        AppState.profilePosts = posts
+    }
     async getPosts() {
         const response = await api.get('api/posts')
         this.handlePostResponse(response)

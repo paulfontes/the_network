@@ -1,15 +1,19 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import { postsServices } from '@/services/PostsService.js';
 import { profilesService } from '@/services/ProfilesService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import PostTemplate from './PostTemplate.vue';
 
 const profile = computed(() => AppState.activeProfile)
+const posts = computed(() => AppState.profilePosts)
 
 onMounted(() => {
     getProfile()
+    getPostsByProfile()
 })
 
 const route = useRoute()
@@ -25,20 +29,28 @@ async function getProfile() {
     }
 }
 
+async function getPostsByProfile() {
+    try {
+        await postsServices.getPostsByProfileId(route.params.profileId)
+    }
+    catch (error) {
+        Pop.error(error);
+        logger.log('There was an error getting posts!', error)
+    }
+}
+
 </script>
 
 
 <template>
     <section v-if="profile" class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 ">
             <img class="profile-coverImg" :src="profile.coverImg" alt="">
         </div>
-        <div class="profile-location ">
+        <div class="profile-location text-center justify-content-center">
             <img class="profile-picture" :src="profile.picture" alt="">
-            <div class="col-2">
+            <div>
                 <h5>{{ profile.name }}</h5>
-                <section class="row">
-                </section>
             </div>
         </div>
         <div class="col-12 text-center mt-5">
@@ -53,6 +65,11 @@ async function getProfile() {
         </div>
         <div v-if="profile.graduated" title="graduated" class="col-3 text-center">
             <i class="mdi mdi-check"></i>
+        </div>
+    </section>
+    <section v-for="post in posts" :key="post.id" class="row">
+        <div class="col-6">
+            <PostTemplate :post="post" />
         </div>
     </section>
 
@@ -75,13 +92,12 @@ async function getProfile() {
     aspect-ratio: 1/1;
     border-radius: 50%;
 
+
 }
 
 .profile-location {
     position: absolute;
     top: 370px;
-    left: 870px;
     text-shadow: 2px 2px 2px black;
-
 }
 </style>
