@@ -12,6 +12,11 @@ const formData = ref({
 async function createPost() {
     try {
         await postsServices.createPost(formData.value)
+
+        formData.value = {
+            body: '',
+            imgUrl: ''
+        }
     }
     catch (error) {
         Pop.error(error);
