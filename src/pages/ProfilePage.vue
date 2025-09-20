@@ -29,33 +29,33 @@ async function getProfile() {
 
 
 <template>
-    <div class="container">
-        <section v-if="profile" class="row">
-            <div class="col-12 position-relative">
-                <img class="profile-coverImg" :src="profile.coverImg" alt="">
+    <section v-if="profile" class="row justify-content-center">
+        <div class="col-md-8">
+            <img class="profile-coverImg" :src="profile.coverImg" alt="">
+        </div>
+        <div class="profile-location ">
+            <img class="profile-picture" :src="profile.picture" alt="">
+            <div class="col-2">
+                <h5>{{ profile.name }}</h5>
+                <section class="row">
+                </section>
             </div>
-            <div class="profile-location">
-                <img class="profile-picture" :src="profile.picture" alt="">
-                <div class="col-1 text-center">
-                    <h1>{{ profile.name }}</h1>
-                    <section class="row">
-                    </section>
-                </div>
-            </div>
-            <div class="col-12">
+        </div>
+        <div class="col-12 text-center mt-5">
+            <p>{{ profile.bio }}</p>
+        </div>
+        <div class="col-3 text-center">
+            {{ profile.class }}
+        </div>
+        <div class="col-3 text-center fs-5">
+            <a v-if="profile.github" :href="profile.github"><i class="mdi mdi-github"></i></a>
+            <a v-if="profile.linkedin" :href="profile.linkedin"><i class="mdi mdi-linkedin"></i></a>
+        </div>
+        <div v-if="profile.graduated" title="graduated" class="col-3 text-center">
+            <i class="mdi mdi-check"></i>
+        </div>
+    </section>
 
-            </div>
-            <div class="col-12">
-
-            </div>
-            <div class="col-12">
-
-            </div>
-            <div class="col-12">
-                {{ profile.bio }}
-            </div>
-        </section>
-    </div>
 </template>
 
 
@@ -79,7 +79,9 @@ async function getProfile() {
 
 .profile-location {
     position: absolute;
-    top: 500px;
+    top: 370px;
     left: 870px;
+    text-shadow: 2px 2px 2px black;
+
 }
 </style>
