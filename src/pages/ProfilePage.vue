@@ -4,19 +4,25 @@ import { postsServices } from '@/services/PostsService.js';
 import { profilesService } from '@/services/ProfilesService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import PostTemplate from './PostTemplate.vue';
 
 const profile = computed(() => AppState.activeProfile)
 const posts = computed(() => AppState.profilePosts)
 
+const route = useRoute()
+
 onMounted(() => {
     getProfile()
     getPostsByProfile()
 })
 
-const route = useRoute()
+
+watch(route, () => {
+    getProfile()
+    getPostsByProfile()
+})
 
 async function getProfile() {
     try {
@@ -67,7 +73,7 @@ async function getPostsByProfile() {
             <i class="mdi mdi-check"></i>
         </div>
         <div class="col-12 text-center mt-5">
-            <h3>Past Posts</h3>
+            <h3><em>Past Posts</em></h3>
         </div>
         <section class="row justify-content-center g-3 mt-3">
             <div class="col-9">
