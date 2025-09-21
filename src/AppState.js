@@ -2,6 +2,7 @@ import { reactive } from 'vue'
 import { Profile } from './models/Profile.js'
 import { Account } from './models/Account.js'
 import { Post } from './models/Post.js'
+import { Ad } from './models/Ad.js'
 
 // NOTE AppState is a reactive object to contain app level data
 export const AppState = reactive({
@@ -22,9 +23,10 @@ export const AppState = reactive({
   activeProfile: null,
 
   /**@type {Post[]} */
-  profilePosts: []
+  profilePosts: [],
 
-
+  /**@type {Ad[]} */
+  ads: []
 
 
 })
