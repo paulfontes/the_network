@@ -14,7 +14,7 @@ const props = defineProps({
 
 
 <template>
-    <div class="col-12">
+    <div class="col-12 mt-3">
         <div class="card">
             <div class="card-body">
                 <p>{{ postProp.body }}</p>

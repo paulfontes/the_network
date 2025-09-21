@@ -66,11 +66,15 @@ async function getPostsByProfile() {
         <div v-if="profile.graduated" title="graduated" class="col-3 text-center">
             <i class="mdi mdi-check"></i>
         </div>
-    </section>
-    <section v-for="post in posts" :key="post.id" class="row">
-        <div class="col-6">
-            <PostTemplate :post="post" />
+        <div class="col-12 text-center mt-5">
+            <h3>Past Posts</h3>
         </div>
+        <section class="row justify-content-center g-3 mt-3">
+            <div class="col-9">
+                <PostTemplate v-for="post in posts" :key="post.id" :postProp="post" />
+            </div>
+
+        </section>
     </section>
 
 </template>
