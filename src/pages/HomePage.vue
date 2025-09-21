@@ -62,6 +62,13 @@ async function changePage(pageNumber) {
           :disabled="currentPage == totalPages">Older Posts</button>
       </div>
       <PostTemplate v-for="post in posts" :key="post.id" :postProp="post" />
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <button @click="changePage(currentPage - 1)" class="btn btn-outline-success" :disabled="currentPage < 2">Newest
+          Posts</button>
+        <p>{{ currentPage }} of {{ totalPages }}</p>
+        <button @click="changePage(currentPage + 1)" class="btn btn-outline-success"
+          :disabled="currentPage == totalPages">Older Posts</button>
+      </div>
     </section>
   </div>
 </template>

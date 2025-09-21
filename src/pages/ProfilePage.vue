@@ -73,7 +73,7 @@ async function getPostsByProfile() {
             <i class="mdi mdi-check"></i>
         </div>
         <div class="col-12 text-center mt-5">
-            <h3><em>Past Posts</em></h3>
+            <h3><em>Past Posts Newest to Oldest</em></h3>
         </div>
         <section class="row justify-content-center g-3 mt-3">
             <div class="col-9">

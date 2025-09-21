@@ -19,6 +19,8 @@ export class Account {
    * @param {string} data.picture
    * @param {string} data.resume
    * @param {number} data.updatedAt
+   * @param {string} data.class
+   * 
    * 
    * 
    */
@@ -37,6 +39,7 @@ export class Account {
     this.name = name;
     this.picture = picture;
     this.resume = resume;
+    // this.class = class
     this.updatedAt = new Date(updatedAt).toLocaleDateString;
     // TODO add additional properties if needed
 

@@ -1,9 +1,12 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { accountService } from '@/services/AccountService.js';
+// import { accountService } from '@/services/AccountService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { computed, onMounted, ref, watch } from 'vue';
+// import { Pop } from '@/utils/Pop.js';
+import { computed, ref, watch } from 'vue';
+
 
 const account = computed(() => AppState.account)
 
@@ -18,18 +21,25 @@ const formData = ref({
     linkedin: '',
     github: '',
     graduated: null,
-    class: '',
+    class: 'Fall 2025',
     bio: ''
 })
 
 watch(account, () => {
     logger.log(account.value);
-    account.value.name = account.value.name
+    formData.value.name = account.value.name
+    formData.value.picture = account.value.picture
+    formData.value.coverImg = account.value.coverImg
+    formData.value.linkedin = account.value.linkedin
+    formData.value.github = account.value.github
+    formData.value.graduated = account.value.graduated
+    // formData.value.class = account.value.class
+    formData.value.bio = account.value.bio
 }, { immediate: true })
 
 async function changeProfileSettings() {
     try {
-        accountService.changeProfileSettings(formData)
+        await accountService.changeProfileSettings(formData.value)
     }
     catch (error) {
         Pop.error(error);
@@ -41,7 +51,7 @@ async function changeProfileSettings() {
 
 
 <template>
-    <form class="row justify-content-center g-3 text-start">
+    <form @submit.prevent="changeProfileSettings()" class="row justify-content-center g-3 text-start">
         <div class="col-md-4">
             <label for="profile-name">Profile Name:</label>
             <input class="form-control" v-model="formData.name" type="text" id="profile-name" name="profile-name"
@@ -81,7 +91,7 @@ async function changeProfileSettings() {
             <textarea class="w-100  form-control" v-model="formData.bio" type="text" id="profile-bio"
                 name="profile-bio"></textarea>
         </div>
-
+        <button class="w-25 form-control btn btn-outline-success" type="submit">Save</button>
     </form>
 </template>
 

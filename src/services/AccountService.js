@@ -4,9 +4,6 @@ import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 
 class AccountService {
-  changeProfileSettings(formData) {
-    throw new Error('Method not implemented.')
-  }
   async getAccount() {
     try {
       const res = await api.get('/account')
@@ -14,6 +11,11 @@ class AccountService {
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
+  }
+  async changeProfileSettings(formData) {
+    const response = await api.put('account', formData)
+    logger.log(response.data)
+    AppState.account = new Account(response.data)
   }
 }
 
