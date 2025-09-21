@@ -24,11 +24,11 @@ async function getAds() {
 
 
 <template>
-    <section class="row justify-content-between">
-        <div v-for="ad in ads" :key="ad.id" class="col-5">
-            <img class="ad-img" :src="ad.square" alt="">
-        </div>
-    </section>
+
+    <div v-for="ad in ads" :key="ad.id" class="col-2">
+        <img class="ad-img" :src="ad.square" alt="">
+    </div>
+
 </template>
 
 
