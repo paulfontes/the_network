@@ -38,6 +38,11 @@ class PostsServices {
 
     }
 
+    async deletePost(postId) {
+        const response = await api.delete(`api/posts/${postId}`)
+        const index = AppState.posts.findIndex(post => post.id == postId)
+        AppState.posts.splice(index, 1)
+    }
     handlePostResponse(response) {
         const posts = response.data.posts.map(pojo => new Post(pojo))
         AppState.posts = posts

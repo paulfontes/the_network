@@ -7,6 +7,7 @@ import { computed, onMounted } from 'vue';
 import PostTemplate from './PostTemplate.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import BlogForm from '@/components/BlogForm.vue';
+import AdForm from '@/components/AdForm.vue';
 
 const posts = computed(() => AppState.posts)
 const currentPage = computed(() => AppState.currentPage)
@@ -49,12 +50,22 @@ async function changePage(pageNumber) {
 
 
 <template>
-  <div class="container">
-    <section class="row g-3 mt-3">
-      <BlogForm v-if="account" />
-      <hr>
+  <div class="container-fluid">
+    <section class="row justify-content-center text-center">
+      <div class="col-6 ">
+        <AdForm />
+      </div>
+      <div class="col-6 ">
+        <AdForm />
+      </div>
+    </section>
+    <section class="justify-content-center row g-3 mt-3">
+      <div class="col-9">
+        <BlogForm v-if="account" />
+      </div>
+      <hr class="w-75">
       <SearchBar />
-      <div class="col-12 d-flex justify-content-between align-items-center">
+      <div class="col-9 d-flex justify-content-between align-items-center">
         <button @click="changePage(currentPage - 1)" class="btn btn-outline-success" :disabled="currentPage < 2">Newest
           Posts</button>
         <p>{{ currentPage }} of {{ totalPages }}</p>
@@ -62,7 +73,7 @@ async function changePage(pageNumber) {
           :disabled="currentPage == totalPages">Older Posts</button>
       </div>
       <PostTemplate v-for="post in posts" :key="post.id" :postProp="post" />
-      <div class="col-12 d-flex justify-content-between align-items-center">
+      <div class="col-9 d-flex justify-content-between align-items-center">
         <button @click="changePage(currentPage - 1)" class="btn btn-outline-success" :disabled="currentPage < 2">Newest
           Posts</button>
         <p>{{ currentPage }} of {{ totalPages }}</p>

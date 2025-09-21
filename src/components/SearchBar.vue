@@ -21,7 +21,7 @@ async function searchPosts() {
 
 
 <template>
-    <div class="col-12">
+    <div class="col-9">
         <form @submit.prevent="searchPosts()">
             <label for="search-bar">Search for a Post</label>
             <div class="d-flex">
