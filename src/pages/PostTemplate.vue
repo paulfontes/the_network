@@ -4,17 +4,17 @@ import { Post } from '@/models/Post.js';
 import { postsServices } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 
 const profile = computed(() => AppState.activeProfile)
 const account = computed(() => AppState.account)
+const posts = computed(() => AppState.posts)
 
 const props = defineProps({
     postProp: { type: Post, required: true }
 })
 
-let numOfLikes = 0
-
+const numOfLikes = computed(() => props.postProp?.likes?.length || 0)
 
 async function deletePost() {
     try {
@@ -39,7 +39,7 @@ async function deletePost() {
 async function likePost() {
     await postsServices.likePost(props.postProp.id)
 }
-numOfLikes = props.postProp.likes.length
+
 
 
 </script>
@@ -66,7 +66,8 @@ numOfLikes = props.postProp.likes.length
                         <p>Likes: {{ numOfLikes }}</p>
                     </div>
                     <div class="text-center">
-                        <button @click="likePost()">Like</button>
+                        <button @click="likePost()" class="btn btn-outline-primary"><i
+                                class="mdi mdi-heart"></i></button>
                     </div>
                     <!-- <div v-for="like in postProp.likes.options" :key="postProp.likes.options.localField"
                         class="text-center">

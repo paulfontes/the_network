@@ -46,6 +46,18 @@ class PostsServices {
     async likePost(postId) {
         const response = await api.post(`api/posts/${postId}/like`)
         logger.log('likes', response.data)
+        // Server should return the updated post. Replace the post in AppState.posts so Vue reactivity updates the UI.
+        const updatedPost = new Post(response.data)
+        const index = AppState.posts.findIndex(p => p.id == postId)
+        if (index !== -1) {
+            // replace to keep reactivity
+            AppState.posts.splice(index, 1, updatedPost)
+        }
+        // also update profilePosts if present
+        const pIndex = AppState.profilePosts.findIndex(p => p.id == postId)
+        if (pIndex !== -1) {
+            AppState.profilePosts.splice(pIndex, 1, updatedPost)
+        }
 
     }
     handlePostResponse(response) {
