@@ -4,7 +4,7 @@ import { postsServices } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
-import PostTemplate from './PostTemplate.vue';
+import PostTemplate from '../components/PostTemplate.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import BlogForm from '@/components/BlogForm.vue';
 import AdForm from '@/components/AdForm.vue';
@@ -52,7 +52,7 @@ async function changePage(pageNumber) {
 <template>
   <div class="container-fluid">
     <section class="row justify-content-between text-center mt-3">
-      <AdForm />
+      <AdForm adShape="tall" size="col-8" />
     </section>
     <section class="justify-content-center row g-3 mt-3">
       <div class="col-9">

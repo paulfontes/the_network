@@ -22,6 +22,11 @@ watch(theme, () => {
       <RouterLink :to="{ name: 'Home' }" class="d-flex align-items-center text-light">
         <img class="navbar-brand" alt="logo" src="/img/cw-logo.png" height="45" />
         <b class="fs-5">Network to the MAX!!</b>
+        <div class="col-2">
+          <b>
+            Home
+          </b>
+        </div>
       </RouterLink>
       <!-- collapse button -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-links"

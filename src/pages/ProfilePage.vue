@@ -6,7 +6,7 @@ import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import PostTemplate from './PostTemplate.vue';
+import PostTemplate from '../components/PostTemplate.vue';
 import AdForm from '@/components/AdForm.vue';
 
 const profile = computed(() => AppState.activeProfile)
@@ -52,13 +52,13 @@ async function getPostsByProfile() {
 <template>
     <section v-if="profile" class="row justify-content-center">
         <div class="col-2 d-flex">
-            <AdForm />
+            <AdForm adShape="square" />
         </div>
         <div class="col-md-8 ">
             <img class="profile-coverImg" :src="profile.coverImg" alt="">
         </div>
         <div class="col-2 d-flex">
-            <AdForm />
+            <AdForm adShape="banner" />
         </div>
         <div class="profile-location text-center justify-content-center">
             <img class="profile-picture" :src="profile.picture" alt="">

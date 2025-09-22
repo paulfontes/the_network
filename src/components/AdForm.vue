@@ -7,6 +7,11 @@ import { computed, onMounted } from 'vue';
 
 const ads = computed(() => AppState.ads)
 
+defineProps({
+    adShape: { type: String, default: 'banner' },
+    size: { type: String, default: 'col-6' }
+})
+
 onMounted(() => getAds())
 
 
@@ -25,8 +30,8 @@ async function getAds() {
 
 <template>
 
-    <div v-for="ad in ads" :key="ad.id" class="col-6">
-        <img class=" ad-img" :src="ad.banner" alt="">
+    <div v-for="ad in ads" :key="ad.id" :class="size">
+        <img class=" ad-img" :src="ad[adShape]" alt="">
     </div>
 
 </template>

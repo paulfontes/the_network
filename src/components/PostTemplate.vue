@@ -14,7 +14,7 @@ const props = defineProps({
     postProp: { type: Post, required: true }
 })
 
-const numOfLikes = computed(() => props.postProp?.likes?.length || 0)
+const numOfLikes = computed(() => props.postProp.likes.length || 0)
 
 async function deletePost() {
     try {

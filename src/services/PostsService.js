@@ -48,6 +48,7 @@ class PostsServices {
         logger.log('likes', response.data)
         // Server should return the updated post. Replace the post in AppState.posts so Vue reactivity updates the UI.
         const updatedPost = new Post(response.data)
+
         const index = AppState.posts.findIndex(p => p.id == postId)
         if (index !== -1) {
             // replace to keep reactivity
