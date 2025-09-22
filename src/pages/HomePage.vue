@@ -51,7 +51,7 @@ async function changePage(pageNumber) {
 
 <template>
   <div class="container-fluid">
-    <section class="row justify-content-evenly text-center mt-3">
+    <section class="row justify-content-between text-center mt-3">
       <AdForm />
     </section>
     <section class="justify-content-center row g-3 mt-3">

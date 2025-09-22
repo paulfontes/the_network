@@ -7,6 +7,7 @@ import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import PostTemplate from './PostTemplate.vue';
+import AdForm from '@/components/AdForm.vue';
 
 const profile = computed(() => AppState.activeProfile)
 const posts = computed(() => AppState.profilePosts)
@@ -50,8 +51,14 @@ async function getPostsByProfile() {
 
 <template>
     <section v-if="profile" class="row justify-content-center">
+        <div class="col-2 d-flex">
+            <AdForm />
+        </div>
         <div class="col-md-8 ">
             <img class="profile-coverImg" :src="profile.coverImg" alt="">
+        </div>
+        <div class="col-2 d-flex">
+            <AdForm />
         </div>
         <div class="profile-location text-center justify-content-center">
             <img class="profile-picture" :src="profile.picture" alt="">
@@ -76,10 +83,7 @@ async function getPostsByProfile() {
             <h3><em>Past Posts Newest to Oldest</em></h3>
         </div>
         <section class="row justify-content-center g-3 mt-3">
-            <div class="col-9">
-                <PostTemplate v-for="post in posts" :key="post.id" :postProp="post" />
-            </div>
-
+            <PostTemplate v-for="post in posts" :key="post.id" :postProp="post" />
         </section>
     </section>
 

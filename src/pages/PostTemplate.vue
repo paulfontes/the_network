@@ -4,8 +4,7 @@ import { Post } from '@/models/Post.js';
 import { postsServices } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { computed } from 'vue';
-
+import { computed, onMounted } from 'vue';
 
 const profile = computed(() => AppState.activeProfile)
 const account = computed(() => AppState.account)
@@ -13,6 +12,9 @@ const account = computed(() => AppState.account)
 const props = defineProps({
     postProp: { type: Post, required: true }
 })
+
+let numOfLikes = 0
+
 
 async function deletePost() {
     try {
@@ -34,12 +36,18 @@ async function deletePost() {
     }
 }
 
+async function likePost() {
+    await postsServices.likePost(props.postProp.id)
+}
+numOfLikes = props.postProp.likes.length
+
+
 </script>
 
 
 <template>
     <div class="col-9 mt-3">
-        <div class="card">
+        <div class="card d-flex justify-content-center">
             <div class="card-body">
                 <p>{{ postProp.body }}</p>
                 <hr>
@@ -53,6 +61,12 @@ async function deletePost() {
                     <div>
                         <button v-if="postProp.creatorId == account?.id" @click="deletePost()"
                             class="btn btn-outline-danger">Delete Post</button>
+                    </div>
+                    <div class="text-center">
+                        <p>Likes: {{ numOfLikes }}</p>
+                    </div>
+                    <div class="text-center">
+                        <button @click="likePost()">Like</button>
                     </div>
                     <!-- <div v-for="like in postProp.likes.options" :key="postProp.likes.options.localField"
                         class="text-center">

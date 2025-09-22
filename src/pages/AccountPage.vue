@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
 import AccountForm from '@/components/AccountForm.vue';
+import AdForm from '@/components/AdForm.vue';
 
 const account = computed(() => AppState.account)
 
@@ -18,6 +19,9 @@ const account = computed(() => AppState.account)
     <div v-else>
       <h1>Loading... <i class="mdi mdi-loading mdi-spin"></i></h1>
     </div>
+  </div>
+  <div class="row justify-content-center m-5 ">
+    <AdForm />
   </div>
 </template>
 

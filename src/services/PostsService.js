@@ -43,6 +43,11 @@ class PostsServices {
         const index = AppState.posts.findIndex(post => post.id == postId)
         AppState.posts.splice(index, 1)
     }
+    async likePost(postId) {
+        const response = await api.post(`api/posts/${postId}/like`)
+        logger.log('likes', response.data)
+
+    }
     handlePostResponse(response) {
         const posts = response.data.posts.map(pojo => new Post(pojo))
         AppState.posts = posts

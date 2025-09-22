@@ -25,8 +25,8 @@ async function getAds() {
 
 <template>
 
-    <div v-for="ad in ads" :key="ad.id" class="col-2">
-        <img class="ad-img" :src="ad.square" alt="">
+    <div v-for="ad in ads" :key="ad.id" class="col-6">
+        <img class=" ad-img" :src="ad.banner" alt="">
     </div>
 
 </template>
