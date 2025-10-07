@@ -52,7 +52,7 @@ async function changePage(pageNumber) {
 <template>
   <div class="container-fluid">
     <section class="row justify-content-between text-center mt-3">
-      <AdForm adShape="tall" size="col-8" />
+      <AdForm adShape="tall" size="col-2" />
     </section>
     <section class="justify-content-center row g-3 mt-3">
       <div class="col-9">
